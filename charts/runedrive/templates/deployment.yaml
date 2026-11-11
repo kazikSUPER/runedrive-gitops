@@ -6,6 +6,7 @@ metadata:
     {{- include "runedrive.labels" . | nindent 4 }}
     app.kubernetes.io/component: api
 spec:
+  progressDeadlineSeconds: 60
   {{- if not .Values.autoscaling }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
