@@ -34,6 +34,14 @@ secrets:
 
 existingSecret: ""
 
+# Progressive delivery (ЛР-6): when enabled, Rollout replaces the api Deployment
+rollout:
+  enabled: false
+  strategy: {}
+
+# extra env vars for the api container (e.g. FAIL_RATE in ЛР-7)
+env: []
+
 ingress:
   enabled: false
   className: nginx
