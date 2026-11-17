@@ -10,4 +10,6 @@ data:
   {{- end }}
   POSTGRES_SERVER: {{ include "runedrive.fullname" . }}-postgres
   REDIS_HOST: {{ include "runedrive.fullname" . }}-redis
-  APP_VERSION: {{ .Values.image.tag | quote }}
+  # APP_VERSION тут навмисно немає: він задається literal env у pod template
+  # (deployment.yaml / rollout.yaml), щоб кожен ReplicaSet зберігав свою
+  # версію: рестарт контейнера не підхоплює версію зі свіжого ConfigMap.

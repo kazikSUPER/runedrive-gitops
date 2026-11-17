@@ -31,6 +31,8 @@ spec:
             - configMapRef:
                 name: {{ include "runedrive.fullname" . }}-config
           env:
+            - name: APP_VERSION
+              value: {{ .Values.image.tag | quote }}
             - name: INSTANCE_ID
               valueFrom:
                 fieldRef:
