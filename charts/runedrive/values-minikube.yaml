@@ -1,6 +1,6 @@
 image:
   repository: ghcr.io/kaziksuper/runedrive
-  tag: "2.0.0"
+  tag: "1.9.0"
   pullPolicy: IfNotPresent
 
 replicaCount: 5
@@ -38,7 +38,7 @@ env:
   - name: PROMETHEUS_ENABLED
     value: "true"
   - name: FAIL_RATE
-    value: "0.5"
+    value: "0"
 
 metrics:
   enabled: true
