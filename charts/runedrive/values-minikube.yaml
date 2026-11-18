@@ -29,6 +29,18 @@ config:
   POSTGRES_USER: "runedrive"
   REDIS_PORT: "6379"
 
+env:
+  - name: PROMETHEUS_ENABLED
+    value: "true"
+  - name: FAIL_RATE
+    value: "0"
+
+metrics:
+  enabled: true
+  path: /metrics
+  interval: 15s
+  scrapeTimeout: 10s
+
 resources:
   requests:
     cpu: 100m
