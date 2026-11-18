@@ -7,14 +7,19 @@ replicaCount: 5
 
 rollout:
   enabled: true
+  analysis:
+    enabled: true
+    prometheusAddress: http://kps-prometheus.monitoring:9090
+    selector: 'namespace="runedrive"'
   strategy:
     canary:
       steps:
         - setWeight: 20
-        - pause: {}
-        - setWeight: 60
         - pause: {duration: 30s}
-        - setWeight: 80
+        - analysis:
+            templates:
+              - templateName: runedrive-runedrive-success-rate
+        - setWeight: 60
         - pause: {duration: 30s}
 
 existingSecret: runedrive-secret

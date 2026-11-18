@@ -38,6 +38,14 @@ existingSecret: ""
 rollout:
   enabled: false
   strategy: {}
+  analysis:
+    enabled: false
+    interval: 30s
+    count: 4
+    failureLimit: 1
+    successCondition: "result[0] >= 0.95"
+    prometheusAddress: ""
+    selector: ""
 
 # extra env vars for the api container (e.g. FAIL_RATE in ЛР-7)
 env: []
