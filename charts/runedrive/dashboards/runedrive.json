@@ -75,7 +75,7 @@
         {
           "refId": "A",
           "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
-          "expr": "100 * sum(rate(http_requests_total{job=\"runedrive-runedrive-api\",status=~\"5..\"}[$__rate_interval])) / clamp_min(sum(rate(http_requests_total{job=\"runedrive-runedrive-api\"}[$__rate_interval])), 0.001)"
+          "expr": "100 * (sum(rate(http_requests_total{job=\"runedrive-runedrive-api\",status=~\"5..\"}[$__rate_interval])) or vector(0)) / clamp_min(sum(rate(http_requests_total{job=\"runedrive-runedrive-api\"}[$__rate_interval])), 0.001)"
         }
       ]
     },
