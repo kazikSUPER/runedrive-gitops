@@ -47,8 +47,22 @@ spec:
             userKey: admin-user
             passwordKey: admin-password
           resources:
-            requests: {cpu: 20m, memory: 96Mi}
-            limits: {memory: 256Mi}
+            requests: {cpu: 20m, memory: 128Mi}
+            limits: {memory: 320Mi}
+          # Grafana 13.3 на повільному ноді ініціалізується ~90 c, типовий liveness
+          # -проб перезапускав контейнер у циклі; даємо запас на старт.
+          livenessProbe:
+            httpGet: {path: /api/health, port: 3000, scheme: HTTP}
+            initialDelaySeconds: 180
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
+          readinessProbe:
+            httpGet: {path: /api/health, port: 3000, scheme: HTTP}
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 10
           sidecar:
             dashboards:
               searchNamespace: ALL      # шукати ConfigMap-и з дашбордами в усіх namespace
