@@ -41,6 +41,10 @@ metrics:
   interval: 15s
   scrapeTimeout: 10s
 
+dashboard:
+  enabled: true
+  folder: RuneDrive
+
 resources:
   requests:
     cpu: 100m

@@ -49,6 +49,11 @@ metrics:
   interval: 30s
   scrapeTimeout: 10s
 
+# Grafana dashboard shipped from Git through the kube-prometheus-stack sidecar
+dashboard:
+  enabled: false
+  folder: RuneDrive
+
 ingress:
   enabled: false
   className: nginx

@@ -1,0 +1,14 @@
+{{- if .Values.dashboard.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "runedrive.fullname" . }}-dashboard
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "runedrive.labels" . | nindent 4 }}
+    grafana_dashboard: "1"
+    grafana_folder: {{ .Values.dashboard.folder | quote }}
+data:
+  runedrive.json: |-
+{{ .Files.Get "dashboards/runedrive.json" | indent 4 }}
+{{- end }}
